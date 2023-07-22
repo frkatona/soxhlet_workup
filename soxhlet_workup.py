@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 # Load the data
-df = pd.read_csv('soxhlet_mass.csv')
+df = pd.read_csv('high-low-oven.csv', delimiter='\t', header = 0)
 
 # Define the constants
 phi_hexane = 0.39  # interaction parameter for hexane/PDMS

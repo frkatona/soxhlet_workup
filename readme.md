@@ -5,8 +5,11 @@
     - row 1 is "sample, pre-wash, wash, post-dry"
     - sample names are formatted as "this_1", "this_2", "that_1", "that_2", etc.
     - mass is in grams
+
+
  ![example csv](example_csv.png "Example CSV Format")
 
 
  - outputs a bar plot with error bars
+ 
  ![example output](example_output.png "Example Output")
