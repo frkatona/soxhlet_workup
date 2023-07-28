@@ -7,9 +7,9 @@
     - mass is in grams
 
 
- ![example csv](example_csv.png "Example CSV Format")
+ ![example csv](images/example_csv.png "Example CSV Format")
 
 
  - outputs a bar plot with error bars
  
- ![example output](example_output.png "Example Output")
+ ![example output](images/example_output.png "Example Output")
