@@ -5,7 +5,7 @@ import seaborn as sns
 from scipy.optimize import curve_fit
 
 # Load the data
-df = pd.read_csv(r'CSVs\240506_CB-PDMS-paper-revisions',  header = 0)    
+df = pd.read_csv(r'CSVs\240506_CB-PDMS-paper-revisions.csv',  header = 0)    
 # x_label = 'oven-laser-oven times (min)'
 
 # Define the constants
