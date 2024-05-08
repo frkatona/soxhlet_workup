@@ -15,11 +15,15 @@ test1 = \frac{a}{b}
 $$
 
 $$
-test2 = ln(1-v_{poly}) + v_{poly} + \chi_{1} v^{2}_{poly} V_{mol,solv}(v^{1/3}_{poly} - \frac{v_{poly}}{2})
+test2.1 = ln(1-v_{poly}) + v_{poly} + \chi_{1} v^{2}_{poly} V_{mol,solv}(v^{1/3}_{poly} - \frac{v_{poly}}{2})
 $$
 
 $$
 test3 = v_{poly} + \chi_{1}
+$$
+
+$$
+test2.2 = ln(asdf) + v_{asdf} + V_{mol,solv}(v) - \frac{v_{poly}}{2}
 $$
 
 where $v_{poly}$ is the volume fraction of polymer in the swollen mass, $\chi_1$ is the system-dependent Flory-Huggins interaction parameter, and $V_{mol,solv}$ is the molar volume of the solvent.
