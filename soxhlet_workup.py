@@ -20,7 +20,7 @@ V_hexane = M_hexane / p_hexane
 V_poly = df['pre-wash'] / (df['pre-wash'] + phi_hexane * V_hexane)
 
 n = - (np.log(1 - V_poly) + V_poly + phi_hexane * V_poly**2) / (V_hexane_molar * (V_poly**(1/3) - V_poly / 2))
-E = 3 * n * R * T # ~ 7000 * n
+E = 3 * n * R * T # modulus ~ 7000 * n
 
 df['n'] = n
 df['E'] = E
