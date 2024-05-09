@@ -15,7 +15,7 @@ n = \frac{ln(1-v_{poly}) + v_{poly} + \chi v^{2}_{poly}}{V_{mol,solv}(asdf)}
 $$
 
 $$
-n = \frac{ln(1-v_{poly}) + v_{poly} + \chi v^{2}_{poly}}{V_{mol,solv}(asdf - \frac{v_{asdf}}{asdf})}
+n = \frac{ln(1-v_{poly}) + v_{poly} + \chi v^{2}_{poly}}{V_{mol,solv}(ln(1-v_{poly}) )}
 $$
 
 where $v_{poly}$ is the volume fraction of polymer in the swollen mass, $\chi$ is the system-dependent Flory-Huggins interaction parameter, and $V_{mol,solv}$ is the molar volume of the solvent.
