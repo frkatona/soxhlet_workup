@@ -11,11 +11,11 @@ n = \frac{ln(1-v_{poly}) + v_{poly} + \chi v^{2}_{poly}}{V_{mol,solv}(v^{1/3}_{p
 $$
 
 $$
-n = \frac{ln(1-v_{poly}) + v_{poly} + \chi v^{2}_{poly}}{asdf}
+n = \frac{ln(1-v_{poly}) + v_{poly} + \chi _{1} v^{2}_{poly}}{asdf}
 $$
 
 $$
-n = \frac{ln(1-v_{poly}) + v_{poly} + \chi v^{2}_{poly}}{asdf 2 \cdot v_{poly}}
+n = \frac{ln(1-v_{poly}) + v_{poly} + \chi v^{2}_{poly}}{asdf 2 v_{poly}}
 $$
 
 where $v_{poly}$ is the volume fraction of polymer in the swollen mass, $\chi$ is the system-dependent Flory-Huggins interaction parameter, and $V_{mol,solv}$ is the molar volume of the solvent.
