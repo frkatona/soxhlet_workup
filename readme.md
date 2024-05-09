@@ -11,7 +11,7 @@ n = \frac{ln(1-v_{poly}) + v_{poly} + \chi v^{2}_{poly}}{V_{mol,solv}(v^{1/3}_{p
 $$
 
 $$
-n = \frac{ln(1-v_{poly}) + v_{poly} + \chi v^{2}_{poly}}{V_{mol,solv}(v^{1/3}_{poly})}
+n = \frac{lasdf}{V_{mol,solv}(v^{1/3}_{poly} - \frac{v_{poly}}{2})}
 $$
 
 $$
