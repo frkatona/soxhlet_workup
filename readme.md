@@ -11,9 +11,12 @@ n = \frac{ln(1-v_{poly}) + v_{poly} + \chi v^{2}_{poly}}{V_{mol,solv}(v^{1/3}_{p
 $$
 
 $$
-test2.3.2 = \frac{ln(1-v_{poly}) + v_{poly} + \chi}{1 - \frac{v_{poly}}{2}}
+n = ln(1-v_{poly}) + v_{poly} + \chi v^{2}_{poly} V_{mol,solv}(- \frac{v_{poly}}{2})
 $$
 
+$$
+test2 = \frac{ln(1-v_{poly}) + v_{poly} + \chi}{1 - \frac{v_{poly}}{2}}
+$$
 
 
 where $v_{poly}$ is the volume fraction of polymer in the swollen mass, $\chi$ is the system-dependent Flory-Huggins interaction parameter, and $V_{mol,solv}$ is the molar volume of the solvent.
