@@ -11,10 +11,6 @@ n = \frac{ln(1-v_{poly}) + v_{poly} + \chi_{1} v^{2}_{poly}}{V_{mol,solv}(v^{1/3
 $$
 
 $$
-test1 = \frac{a}{b}
-$$
-
-$$
 test2.1 = ln(1-v_{poly}) + v_{poly} + \chi_{1} v^{2}_{poly} V_{mol,solv}(v^{1/3}_{poly} - \frac{v_{poly}}{2})
 $$
 
@@ -23,7 +19,11 @@ test2.2 = ln(asdf) + v_{asdf} + V_{mol,solv}(v) - \frac{v_{poly}}{2}
 $$
 
 $$
-test2.3 = \frac{ln(asdf) + v_{asdf} + V_{mol,solv}}{(v) - \frac{v_{poly}}{2}}
+test2.3.1 = \frac{ln(1-v_{poly}) + v_{asdf} + V_{mol,solv}}{(v) - \frac{v_{poly}}{2}}
+$$
+
+$$
+test2.3.2 = \frac{ln(1-v_{poly}) + v_{poly} + \chi}{1 - \frac{v_{poly}}{2}}
 $$
 
 $$
