@@ -15,7 +15,7 @@ n = \frac{ln(1-v_{poly}) + v_{poly} + \chi v^{2}_{poly}}{asdf}
 $$
 
 $$
-n = \frac{ln(1-v_{poly}) + v_{poly} + \chi v^{2}_{poly}}{asdf(asdf - \frac{v_{poly}}{2})}
+n = \frac{ln(1-v_{poly}) + v_{poly} + \chi v^{2}_{poly}}{asdf(asdf - asf)}
 $$
 
 $$
