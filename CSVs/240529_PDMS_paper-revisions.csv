@@ -1,0 +1,13 @@
+sample,pre-wash,wash,post-dry
+ambient-pristine_1, 3.5870, 7.97, 3.2530
+ambient-pristine_2, 3.7715, 10.89, 3.3082
+ambient-pristine_3, 4.0750, 11.23, 3.7675
+ambient-pristine_4, 4.3145, 12.69, 3.7926
+ambient-1e-6_1, 2.5104, 6.14, 2.4116
+ambient-1e-6_2, 2.6295, 6.96, 2.4460
+ambient-1e-6_3, 2.8379, 8.45, 2.4460
+ambient_1e-6_4, 2.9688, 9.80, 2.5685
+laser-1e-6_1, 2.6240, 5.64, 2.5880
+laser-1e-6_2, 2.8130, 5.90, 2.7036
+laser-1e-6_3, 2.8950, 5.97, 2.7748
+laser-1e-6_4, 3.0800, 6.18, 2.9593
