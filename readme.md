@@ -1,11 +1,11 @@
 # Soxhlet wash data extraction script
 
-This project uses Flory-Huggins theory to estimate the number of polymer chains in PDMS after a solvent wash. 
+This project uses Flory-Huggins theory to estimate the number of polymer chains in PDMS and fraction of remaining mass after a solvent wash. 
 
 ## Output
 
-### Example Crosslink Density Output
-![example output](images/example_output.png "Example Output")
+### Example Crosslink Density + Gel Fraction Output
+![example output](images/CLD_GF_placeholder.png) "Example Output")
 
 ### Example Tukey HSD Test Output (console)
 
@@ -40,4 +40,5 @@ where $R$ is the gas constant and $T$ is the absolute temperature.
 
 ## To Do:
   - [x] Rework stats for readability and ANOVA testing
-  - [ ] Consider why the crosslink density results are so much higher than those found in the Fanse et al. reference
+  - [x] Add gel fraction to the crosslink density calculation/plot
+  - [ ] Consider why the crosslink density results are higher than those found in the Fanse et al. reference
