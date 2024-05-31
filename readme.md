@@ -40,3 +40,4 @@ where $R$ is the gas constant and $T$ is the absolute temperature.
 
 ## To Do:
   - [x] Rework stats for readability and ANOVA testing
+  - [ ] Consider why the crosslink density results are so much higher than those found in the Fanse et al. reference
