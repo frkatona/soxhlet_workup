@@ -42,24 +42,32 @@ df['sample_type'] = pd.Categorical(df['sample_type'], categories=df['sample_type
 # Grouping the data by the corrected sample type and calculating mean and std
 grouped_prefix_corrected = df.groupby('sample_type').agg({'n': ['mean', 'std']}).reset_index()
 grouped_prefix_corrected.columns = ['sample_type', 'n_mean', 'n_std']
-
 # Grouping the data by the corrected sample type and calculating mean and std of the difference
 grouped_diff = df.groupby('sample_type')['gelFraction'].agg(['mean', 'std']).reset_index()
 grouped_diff.columns = ['sample_type', 'diff_mean', 'diff_std']
-
-# Plotting
+# Plotting Crosslink Density
 plt.figure(figsize=(12, 8))
 fontsize = 20
-bar_width = 0.35  # Width of each bar
+bar_width = 0.8  # Width of each bar
 x_pos_prefix_corrected = np.arange(len(grouped_prefix_corrected['sample_type']))
-x_pos_diff = x_pos_prefix_corrected + bar_width
 
-plt.bar(x_pos_prefix_corrected, grouped_prefix_corrected['n_mean'], yerr=grouped_prefix_corrected['n_std'], capsize=5, width=bar_width, label='Crosslink Density')
-plt.bar(x_pos_diff, grouped_diff['diff_mean'], yerr=grouped_diff['diff_std'], capsize=5, width=bar_width, label='Difference (Pre-wash - Post-dry)')
+# Define a list of shades of blue
+colors = ['#257085', '#1f5570', '#505570']
+
+plt.bar(x_pos_prefix_corrected, grouped_prefix_corrected['n_mean'], yerr=grouped_prefix_corrected['n_std'], capsize=5, width=bar_width, color=colors)
 plt.ylabel('Crosslink Density (mmol/cm^3)', fontsize=fontsize)
-plt.xticks(x_pos_prefix_corrected + bar_width/2, grouped_prefix_corrected['sample_type'], fontsize=fontsize)  # Set x-axis positions and labels
+plt.xticks(x_pos_prefix_corrected, grouped_prefix_corrected['sample_type'], fontsize=fontsize)  # Set x-axis positions and labels
 plt.yticks(fontsize=fontsize)
-plt.legend(fontsize=fontsize)
+plt.tight_layout()
+
+# Plotting Difference (Pre-wash - Post-dry)
+plt.figure(figsize=(12, 8))
+x_pos_diff = np.arange(len(grouped_diff['sample_type']))
+
+plt.bar(x_pos_diff, grouped_diff['diff_mean'], yerr=grouped_diff['diff_std'], capsize=5, width=bar_width, color=colors)
+plt.ylabel('Difference (Pre-wash - Post-dry)', fontsize=fontsize)
+plt.xticks(x_pos_diff, grouped_diff['sample_type'], fontsize=fontsize)  # Set x-axis positions and labels
+plt.yticks(fontsize=fontsize)
 plt.tight_layout()
 plt.show()
 
