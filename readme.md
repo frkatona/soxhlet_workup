@@ -1,6 +1,6 @@
 # Soxhlet wash data extraction script
 
-This project uses Flory-Huggins theory to estimate the number of polymer chains in PDMS and fraction of remaining mass after a solvent wash. 
+This project uses solvent interaction data to estimate cross-link density and gel fraction of PDMS.  It also determines significant difference through a Tukey HSD test.  It is designed to work with iterated samples and data presented in a custom csv format.
 
 ## Output
 
@@ -11,6 +11,8 @@ This project uses Flory-Huggins theory to estimate the number of polymer chains 
 
 ![example output](images/example_tukey.png "Tukey HSD Test")
 
+### (rightmost column indicates rejection of the null hypothesis, i.e. significant difference)
+
 ## Usage
 
 for use with custom csv format where:
@@ -18,9 +20,12 @@ for use with custom csv format where:
   - sample names are formatted as "this_1", "this_2", "that_1", "that_2", etc.
   - mass is in grams
 
+### example:
 ![example csv](images/example_csv.png "Example CSV Format")
 
-## Flory-Huggins theory
+## Theory
+
+### Flory-Huggins theory
 
 Flory-Huggins theory models the free energy of mixing for a polymer solution (here, PDMS in hexane).  This can be used to estimate the number of polymer chains in a given volume of solvent, n:
 
@@ -37,6 +42,14 @@ E = 3 \cdot n \cdot R \cdot T
 $$
 
 where $R$ is the gas constant and $T$ is the absolute temperature.
+
+### Gel Fraction
+
+The gel fraction is simply the mass of the polymer remaining as a fraction of original mass, i.e.:
+
+$$
+f_{gel} = \frac{m_{postdry}}{m_{prewash}}
+$$ 
 
 ## To Do:
   - [x] Rework stats for readability and ANOVA testing
