@@ -4,10 +4,13 @@ This project uses solvent interaction data to estimate cross-link density and ge
 
 ## Output
 
-### Example Crosslink Density + Gel Fraction Output
-![example output](images/CLD_GF_placeholder.png) "Example Output")
+### example cross-link density
+![example output](images/example_cld.png "Example cross-link density output")
 
-### Example Tukey HSD Test Output (console)
+### example gel fraction
+![example output](images/example_gelfraction.png "Example gel fraction output")
+
+### example Tukey HSD Test Output (console)
 
 ![example output](images/example_tukey.png "Tukey HSD Test")
 
@@ -20,7 +23,7 @@ for use with custom csv format where:
   - sample names are formatted as "this_1", "this_2", "that_1", "that_2", etc.
   - mass is in grams
 
-### example:
+### example CSV:
 ![example csv](images/example_csv.png "Example CSV Format")
 
 ## Theory

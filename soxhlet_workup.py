@@ -65,7 +65,7 @@ plt.figure(figsize=(12, 8))
 x_pos_diff = np.arange(len(grouped_diff['sample_type']))
 
 plt.bar(x_pos_diff, grouped_diff['diff_mean'], yerr=grouped_diff['diff_std'], capsize=5, width=bar_width, color=colors)
-plt.ylabel('Difference (Pre-wash - Post-dry)', fontsize=fontsize)
+plt.ylabel('gel fraction (g/g)', fontsize=fontsize)
 plt.xticks(x_pos_diff, grouped_diff['sample_type'], fontsize=fontsize)  # Set x-axis positions and labels
 plt.yticks(fontsize=fontsize)
 plt.tight_layout()
