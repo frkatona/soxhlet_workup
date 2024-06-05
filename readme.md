@@ -45,7 +45,7 @@ where $R$ is the gas constant and $T$ is the absolute temperature.
 
 ### Gel Fraction
 
-The gel fraction is simply the mass of the polymer remaining as a fraction of original mass, i.e.:
+The gel fraction is the amount of polymer that has reached the gel point and is not removed over the course of the solvent wash.  It is derived simply as the mass of the polymer remaining after the removal of unincorporated oligomers as a fraction of original mass, i.e.:
 
 $$
 f_{gel} = \frac{m_{postdry}}{m_{prewash}}
