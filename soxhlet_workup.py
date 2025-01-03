@@ -9,18 +9,15 @@ df = pd.read_csv('high-low-oven.csv', delimiter='\t', header = 0)
 # Define the constants
 phi_hexane = 0.39  # interaction parameter for hexane/PDMS
 V_hexane_molar = 130.7  # molar volume for hexane, in mL/mol
-rho_hexane = 0.659  # density of hexane, in g/mL
+rho_hexane = 0.659  # density of hexane, in g/cm^3
 R = 8.3145  # universal gas constant, in J/(mol·K)
 T = 298.15  # absolute temperature, in K
 
-# Convert density to g/cm^3 (same units as molar volume)
-rho_hexane = rho_hexane * 1e-3  # g/cm^3
-
 # Calculate mass of hexane absorbed by the polymer
-M_hexane = df['wash'] - df['pre-wash']  # g
+m_hexane = df['wash'] - df['pre-wash']  # g
 
 # Calculate volume of hexane absorbed by the polymer
-V_hexane = M_hexane / rho_hexane  # cm^3
+V_hexane = m_hexane / rho_hexane  # cm^3
 
 # Calculate polymer volume fraction
 V_poly = df['pre-wash'] / (df['pre-wash'] + phi_hexane * V_hexane)
@@ -32,7 +29,7 @@ n = - (np.log(1-V_poly) + V_poly + phi_hexane * V_poly**2) / (V_hexane_molar * (
 E = 3 * n * R * T
 
 # Convert E from Pa to MPa
-E = E * 1e-6  # MPa
+E = E * 1e-6
 
 # Add the calculated n and E to the dataframe
 df['n'] = n
