@@ -2,7 +2,6 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 
-
 ## load data ##
 data = pd.read_csv('CSVs/241127_RLOvsLRO_SwellMassData_topside.csv')
 
