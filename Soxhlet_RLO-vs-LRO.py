@@ -2,63 +2,87 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 
-## load data ##
-data = pd.read_csv('CSVs/241127_RLOvsLRO_SwellMassData_topside.csv')
+## Load data ##
+data = pd.read_csv('rawdata/250123_RLOvsLRO_reformat.csv')
 
+## Extract sample base names ##
+data['sample_base'] = data['sample'].str.extract(r'(LRO_[a-z-]+|RLO_[a-z-]+)')
 
-## constants ##
-phi_hexane = 0.39  # interaction parameter for hexane/PDMS
-V_hexane_molar = 130.7  # molar volume for hexane (mL/mol)
-rho_hexane = 0.659  # density of hexane, in g/cm^3 (have I seen this *1e-3?)
-R = 8.3145  # universal gas constant (J/(mol·K))
-T = 298.15  # absolute temperature (K)
+# Group by the sample base and calculate means and standard deviations
+numeric_columns = ['pre-wash', 'wash', 'post-dry']
+grouped = data.groupby('sample_base')[numeric_columns].agg(['mean', 'std'])
+grouped.columns = ['_'.join(col) for col in grouped.columns]  # Flatten MultiIndex
+grouped.reset_index(inplace=True)
 
+# Constants
+phi_hexane = 0.39
+V_hexane_molar = 130.7  # cm³/mol
+rho_hexane = 0.659  # g/cm³
+R = 8.3145  # J/(mol·K)
+T = 298.15  # K
 
-## data processing ##
-m_hexane = data['wash'] - data['pre-wash']  # mass of hexane absorbed (g)
-V_hexane = m_hexane / rho_hexane  # volume absorbed by polymer (cm^3)
-V_poly = data['pre-wash'] / (data['pre-wash'] + phi_hexane * V_hexane) # volume fraction of polymer
+## Data Processing ##
+# Calculate mean values
+m_hexane_mean = grouped['wash_mean'] - grouped['pre-wash_mean']
+V_hexane_mean = m_hexane_mean / rho_hexane
+V_poly_mean = grouped['pre-wash_mean'] / (grouped['pre-wash_mean'] + phi_hexane * V_hexane_mean)
 
+n_mean = - (np.log(1 - V_poly_mean) + V_poly_mean + phi_hexane * V_poly_mean**2) / (
+        V_hexane_molar * (V_poly_mean**(1 / 3) - V_poly_mean / 2)) * 1000
+E_mean = 3 * n_mean * R * T * 1e-3  # Convert to kPa
+gel_fraction_mean = grouped['post-dry_mean'] / grouped['pre-wash_mean'] * 100
 
-## determine crosslink density and modulus from polymer volume fraction ##
-n = - (np.log(1-V_poly) + V_poly + phi_hexane * V_poly**2) / (V_hexane_molar * (V_poly**(1/3) - V_poly / 2)) * 1000  # 1000 for mol --> mmol
-# n = - (np.log(1 - V_poly) + V_poly + phi_hexane * V_poly**2) / (V_hexane_molar * (V_poly**(1/3) - V_poly / 2)) 
+# Propagate standard deviations
+m_hexane_std = np.sqrt(grouped['wash_std']**2 + grouped['pre-wash_std']**2)
+V_hexane_std = m_hexane_std / rho_hexane
+V_poly_std = np.sqrt(
+    (grouped['pre-wash_std'] / grouped['pre-wash_mean'])**2 +
+    (phi_hexane * V_hexane_std / (grouped['pre-wash_mean'] + phi_hexane * V_hexane_mean))**2
+) * V_poly_mean
 
-E = 3 * n * R * T
-E = E * 1e-3  # Convert E from Pa to kPa
+# Approximate std propagation for n and E
+n_std = np.abs(n_mean) * V_poly_std / V_poly_mean
+E_std = 3 * R * T * 1e-3 * n_std
+gel_fraction_std = np.sqrt(
+    (grouped['post-dry_std'] / grouped['post-dry_mean'])**2 +
+    (grouped['pre-wash_std'] / grouped['pre-wash_mean'])**2
+) * gel_fraction_mean
 
-data['n'] = n
-data['E'] = E
-
-data['gel fraction'] = data['post-dry'] / data['pre-wash'] * 100
-
+grouped['n_mean'] = n_mean
+grouped['n_std'] = n_std
+grouped['E_mean'] = E_mean
+grouped['E_std'] = E_std
+grouped['gel_fraction_mean'] = gel_fraction_mean
+grouped['gel_fraction_std'] = gel_fraction_std
 
 ## Plotting ##
-# formatting
-colors = ['#253d3d', '#296c58', '#1ea57a', '#59baa0', '#8b2317', '#c63030', '#c44846', '#e8746e',] 
-fontsize = 30
+# Formatting
+fontsize = 16
+colors = ['#11281b', '#296c58', '#39b38c', '#64c5ab', '#8b2317', '#c63030', '#c44846', '#e8746e']
 
-# cross-link density
+# Crosslink density with error bars
 plt.figure(figsize=(10, 5))
-plt.bar(data[r'sample'], data[r'n'], color=colors)
-plt.xticks(fontsize=fontsize)
+plt.bar(grouped['sample_base'], grouped['n_mean'], yerr=grouped['n_std'], capsize=5, color=colors, alpha=0.7)
+plt.xticks(rotation=45, fontsize=fontsize)
 plt.yticks(fontsize=fontsize)
-plt.ylabel('crosslink density (mmol/cm³)', fontsize=fontsize)
+plt.ylabel('Crosslink Density (mmol/cm³)', fontsize=fontsize)
+plt.tight_layout()
+plt.show()
 
-# modulus
+# Elastic modulus with error bars
 plt.figure(figsize=(10, 5))
-plt.bar(data[r'sample'], data[r'E'], color=colors)
-plt.xticks(fontsize=fontsize)
+plt.bar(grouped['sample_base'], grouped['E_mean'], yerr=grouped['E_std'], capsize=5, color=colors, alpha=0.7)
+plt.xticks(rotation=45, fontsize=fontsize)
 plt.yticks(fontsize=fontsize)
-plt.ylabel('elastic modulus (kPa)', fontsize=fontsize)
+plt.ylabel('Elastic Modulus (kPa)', fontsize=fontsize)
+plt.tight_layout()
+plt.show()
 
-# gel fraction
+# Gel fraction with error bars
 plt.figure(figsize=(10, 5))
-plt.bar(data[r'sample'], data[r'gel fraction'], color=colors)
-plt.xticks(fontsize=fontsize)
+plt.bar(grouped['sample_base'], grouped['gel_fraction_mean'], yerr=grouped['gel_fraction_std'], capsize=5, color=colors, alpha=0.7)
+plt.xticks(rotation=45, fontsize=fontsize)
 plt.yticks(fontsize=fontsize)
-plt.ylabel('gel fraction (%)', fontsize=fontsize)
-
-# show plots
+plt.ylabel('Gel Fraction (%)', fontsize=fontsize)
 plt.tight_layout()
 plt.show()
