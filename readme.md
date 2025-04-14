@@ -6,15 +6,15 @@ This project uses solvent interaction data to estimate cross-link density and ge
 
 ### example cross-link density
 
-![example output](images/example_cld.png "Example cross-link density output")
+![example output](exports/example_cld.png "Example cross-link density output")
 
 ### example gel fraction
 
-![example output](images/example_gelfraction.png "Example gel fraction output")
+![example output](exports/example_gelfraction.png "Example gel fraction output")
 
 ### example Tukey HSD Test Output (console)
 
-![example output](images/example_tukey.png "Tukey HSD Test")
+![example output](exports/example_tukey.png "Tukey HSD Test")
 
 ### (rightmost column indicates rejection of the null hypothesis, i.e. significant difference)
 
@@ -30,7 +30,7 @@ for use with custom csv format where:
 
 ### example CSV:
 
-![example csv](images/example_csv.png "Example CSV Format")
+![example csv](exports/example_csv.png "Example CSV Format")
 
 ## Theory
 
